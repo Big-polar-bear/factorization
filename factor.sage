@@ -896,11 +896,9 @@ def worker(procnum,return_dict,primetotal,n,pq,sols,aid):
 										lchance=0
 							if hit ==0 and lchance==0:
 								if len(indexes)==0:
-									t+=1
 									break
 								lchance=1
 							elif hit==0 and lchance==1:
-								t+=1
 								break		
 							depth+=1
 							if debug == 1 and depth == maxdepth:
