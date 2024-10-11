@@ -3,7 +3,7 @@
 Uodate 11 oct: Delaying release until next week, as I want to get it 100% right this time around. The current version on github is completely broken (but the paper is correct), there's a number of bugs in analyzing lll output. If it finds factors its random. I fixed all that in the upcoming release. Some things I fixed:
 
 1. Sign issue breaking analyzeresult function completely
-2. Reworker the strategy to put single smaller moduli in different columns. And then match it against small solutions
+2. Reworked the strategy to put single smaller moduli in different columns. And then match it against small solutions
 I.e if the y solution we want to find is 148, our lll matrix will find it by matching several columns against 3 mod 5.
 (we only need to match against a very small modulus of the full y solution, this scales logarithmically, we do not need to bruteforce exponentially).
 3. Reworking the weight reduction algorithm to delete partial results from the matrix completely as to reduce matrix dimensions.
