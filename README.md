@@ -1,6 +1,6 @@
 # factorization
 
-Uodate 11 oct: Delaying release until next week, as I want to get it 100% this time around. The current version on github is completely broken (but the paper is correct), there's a number of bugs in analyzing lll output. If it finds factors its random. I fixed all that in the upcoming release. Some things I fixed:
+Uodate 11 oct: Delaying release until next week, as I want to get it 100% right this time around. The current version on github is completely broken (but the paper is correct), there's a number of bugs in analyzing lll output. If it finds factors its random. I fixed all that in the upcoming release. Some things I fixed:
 
 1. Sign issue breaking analyzeresult function completely
 2. Reworker the strategy to put single smaller moduli in different columns. And then match it against small solutions
