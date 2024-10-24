@@ -764,7 +764,7 @@ def weightreduction(indexe,reduced_singlesums,reduced_indexlist,reduced_sols):
 
 def worker(procnum,return_dict,n,pq,sols,aid,search_range):
 	bits=bitlen(n)
-	scalar=10000000**bits
+	scalar=10**bits
 	allsols,allbigsums,allsinglesums,allindexlist=[],[],[],[]
 	bigsums,bigmodulus,singlesums=[],[],[]
 	i=0
