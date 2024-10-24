@@ -1,6 +1,7 @@
 # factorization
 
 If you want to sponsor future research and have exclusive rights big_polar_bear1@proton.me
+I also have windows 0days for sale, will accept crypto as payment. Do not care who buys, got to make a living since I cant get a job.
 
 Note: The results from the paper assumes a semiprime with two factors of roughly similar bit length. As is relevant to RSA implementations. Minor tweaks need to be made otherwise.
 
