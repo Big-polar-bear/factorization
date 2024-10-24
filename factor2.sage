@@ -34,10 +34,11 @@ cores=16				#max amount of cores to use
 
 ##Algorithm parameters
 g_multiplier=0.20           #Decrease to generate more columns, increase to generate less columns.
-g_aid_mult=3					#Higher value generates less precomputed combinations, adjust accordinly to cores available
+g_aid_mult=2.5					#Higher value generates less precomputed combinations, adjust accordinly to cores available
 g_matched_del_amount=0.1             #Percentage of all weights to delete during weight reduction when we found a valid result
 g_unmatched_del_amount=0.2           #Percentage of all weights to delete during weight reudction when we found no valid result
-g_search_range_floor=0.5 
+g_search_range_floor=0.5 	
+g_weight_red_ceiling=0.6  #Determins depth of weight reduction.. check worker function
 #Lifting (code is unoptimized for heavy lifting)
 g_liftlimit=4
 g_lift_for_2=7
@@ -50,8 +51,8 @@ printcols=26
 
 ##Define custom factors (mainly for debugging)
 g_enable_custom_factors=0
-g_p=127081
-g_q=129527
+g_p=107
+g_q=41
 
 
 ##Key gen function##
@@ -455,6 +456,7 @@ def calc_fac(sr,n,offset):
 	return 0
 
 
+
 def check_result(total1,n,sr,aidmod):	
 	if total1 < 1:
 		if total1 == 0:
@@ -578,11 +580,18 @@ def runLLL(M,size,n,sums,pq,s1,mods,procnum,indexlist,sols,indl,constr1,aidmod,s
 	q=0
 	while q < length:
 		a=1
+		skip=0
+		if L[q, -(len(sums)+3)] != 1/2:
+			q+=1
+			continue
 		while a < (len(sums)+3):
-			if L[q, -a] != 0:
+			if 	L[q, -a] != 0:
+				skip=1
 				break
 			a+=1	
-
+		if skip == 1:
+			q+=1
+			continue	
 		p=0
 		j=0
 		skip=0
@@ -827,7 +836,7 @@ def worker(procnum,return_dict,n,pq,sols,aid,search_range):
 						return 1
 					elif added==1:
 						indexes=indexe
-						if len(indexes) > len(allindexlist[t])*0.6:
+						if len(indexes) > len(allindexlist[t])*g_weight_red_ceiling:
 							break
 					else:
 						break
