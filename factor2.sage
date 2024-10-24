@@ -454,15 +454,6 @@ def calc_fac(sr,n,offset):
 			return 1
 	return 0
 
-def parse_list(padd,psub,modulus1):
-	tadd,tsub=0,0
-	for i in padd:
-		tadd+=i
-	for i in psub:	
-		tsub+=i	
-	total1=(tadd-tsub)%modulus1
-	reverse=modulus1-total1
-	return total1,reverse
 
 def check_result(total1,n,sr,aidmod):	
 	if total1 < 1:
