@@ -634,16 +634,19 @@ def runLLL(M,size,n,sums,pq,s1,mods,procnum,indexlist,sols,indl,constr1,aidmod,s
 				if back == prev:
 					return total1,indexall,0,0,constraint_adj_l		
 			elif adjusted == 0:
-				if back > n**(search_range*2):
+				checktotal=back
+				if back < 0:
+					checktotal*=-1
+				if checktotal > n**(search_range*2):
 					constraint_adj_l-=0.1
 					adjusted=1
-				elif back > n**(search_range*1.2):
+				elif checktotal > n**(search_range*1.2):
 					constraint_adj_l-=0.05
 					adjusted=1	
-				elif back > n**search_range:
+				elif checktotal > n**search_range:
 					constraint_adj_l-=0.001
 					adjusted=1	
-				elif back < n**(search_range/2):
+				elif checktotal < n**(search_range/2):
 					constraint_adj_l+=0.001
 					adjusted=1
 			prev=back
@@ -653,11 +656,10 @@ def runLLL(M,size,n,sums,pq,s1,mods,procnum,indexlist,sols,indl,constr1,aidmod,s
 		q+=1  
 	i=0
 	unmatched=0
-	deletion_amount=g_deletion_amount
 	adj=0
 	if len(indexlistc)==0:
 		adj=1
-	while i < deletion_amount and len(indexall) > 0:
+	while i < g_deletion_amount and len(indexall) > 0:
 		ind=random.randrange(0,len(indexall))
 		if len(indexlistc)>0 and ind >0:
 			ir=take_closest(indexlistc,indexall[ind])
